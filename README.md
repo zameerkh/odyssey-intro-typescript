@@ -1,22 +1,176 @@
-# (Odyssey Course) Intro to GraphQL with TypeScript
+# 🚀 Intro to GraphQL with TypeScript & Apollo Server
 
-Welcome to the starter code for **Intro to GraphQL with TypeScript**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-typescript) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
+A comprehensive GraphQL API built with TypeScript and Apollo Server, following the [Apollo GraphQL TypeScript Tutorial](https://www.apollographql.com/tutorials/intro-typescript). This project demonstrates modern GraphQL development practices using schema-first design and type-safe resolver implementation.
 
-## How to use this repo
+## 📖 About
 
-The course will walk you step by step on what to do. This codebase is the starting point of your journey!
+This project implements a **space travel booking platform** where users can browse and book intergalactic locations. It showcases:
 
-Navigate to the root of the project directory, and run the following commands.
+- **Schema-First Design**: Define your API structure using GraphQL Schema Definition Language (SDL)
+- **Type Safety**: Automatic TypeScript type generation from GraphQL schemas
+- **Resolver Functions**: Clean, maintainable data fetching logic
+- **REST API Integration**: Connect existing REST services to your GraphQL layer
+
+## 🛠️ Tech Stack
+
+- **[Apollo Server](https://www.apollographql.com/docs/apollo-server/)** - GraphQL server implementation
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[GraphQL Code Generator](https://the-guild.dev/graphql/codegen)** - Automatic type generation
+- **[ts-node-dev](https://github.com/wclr/ts-node-dev)** - Development server with hot reload
+- **Node.js** - Runtime environment
+
+## 📁 Project Structure
 
 ```
-npm install && npm run dev
+src/
+├── datasources/          # REST API data sources
+├── graphql.d.ts         # GraphQL type declarations
+├── helpers.ts           # Utility functions
+├── index.ts             # Apollo Server setup
+├── schema.graphql       # GraphQL schema definition
+└── types.ts             # Generated TypeScript types
 ```
 
-The `final` branch of this repo contains the final stage of the course, with all of the steps and code completed! If you get stuck, you can refer to it and compare your code.
+## 🚀 Getting Started
 
-## Getting help
+### Prerequisites
 
-This repo is _not regularly monitored_.
+- Node.js >= 18.0
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/apollographql-education/intro-typescript.git
+   cd intro-typescript
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Generate TypeScript types**
+   ```bash
+   npm run generate
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open Apollo Studio Sandbox**
+   
+   Navigate to [http://localhost:4000](http://localhost:4000) to explore your GraphQL API using Apollo Studio's built-in playground.
+
+## 📝 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server with hot reload |
+| `npm run generate` | Generate TypeScript types from GraphQL schema |
+| `npm run compile` | Compile TypeScript to JavaScript |
+| `npm start` | Build and start production server |
+| `npm test` | Run test suite |
+
+## 🌌 Schema Overview
+
+### Types
+
+**Listing** - A bookable intergalactic location
+```graphql
+type Listing {
+  id: ID!
+  title: String!
+  numOfBeds: Int
+  costPerNight: Float
+  closedForBookings: Boolean
+}
+```
+
+### Queries
+
+**featuredListings** - Get curated homepage listings
+```graphql
+query GetFeaturedListings {
+  featuredListings {
+    id
+    title
+    costPerNight
+    closedForBookings
+  }
+}
+```
+
+## 🔧 Development Workflow
+
+1. **Modify Schema**: Update `src/schema.graphql`
+2. **Generate Types**: Run `npm run generate`
+3. **Implement Resolvers**: Add resolver logic in `src/index.ts`
+4. **Test**: Use Apollo Studio Sandbox at `http://localhost:4000`
+
+## 📚 Learning Objectives
+
+This project teaches you:
+
+- ✅ **Schema Definition Language (SDL)** fundamentals
+- ✅ **Schema-first design** approach and benefits
+- ✅ Building GraphQL APIs with **TypeScript**
+- ✅ Writing **resolver functions**
+- ✅ Connecting **REST data sources**
+- ✅ Using **query arguments**
+- ✅ Implementing **resolver chains**
+- ✅ Adding **mutations** to schemas
+- ✅ **Best practices** for mutation responses
+
+## 🎯 Tutorial Progress
+
+Follow along with the [Apollo GraphQL TypeScript Tutorial](https://www.apollographql.com/tutorials/intro-typescript):
+
+- [x] Course overview and setup
+- [x] GraphQL basics
+- [x] Schema definition language (SDL)
+- [x] Building the schema
+- [x] Apollo Server setup
+- [x] Apollo Sandbox Explorer
+- [ ] The listings REST API
+- [ ] Resolvers
+- [ ] Code generation
+- [ ] Querying real data
+- [ ] Query arguments
+- [ ] Adding the Amenity type
+- [ ] Resolver chains
+- [ ] Mutations
+
+## 🛡️ Type Safety
+
+This project uses **GraphQL Code Generator** to automatically generate TypeScript types from your GraphQL schema, ensuring:
+
+- **Compile-time safety** for resolver implementations
+- **Intellisense support** in your IDE
+- **Automatic type updates** when schema changes
+- **Reduced runtime errors**
+
+## 📖 Resources
+
+- **[Apollo GraphQL Docs](https://www.apollographql.com/docs/)**
+- **[GraphQL TypeScript Tutorial](https://www.apollographql.com/tutorials/intro-typescript)**
+- **[TypeScript Handbook](https://www.typescriptlang.org/docs/)**
+- **[GraphQL Code Generator](https://the-guild.dev/graphql/codegen/docs)**
+
+## 📄 License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+This is a tutorial project. For contributions, please refer to the [original repository](https://github.com/apollographql-education/intro-typescript).
+
+---
+
+**Happy coding! 🚀** Start your GraphQL journey with type-safe, scalable APIs.
 
 For any issues or problems concerning the course content, please refer to the [Odyssey topic in our community forums](https://community.apollographql.com/tags/c/help/6/odyssey). You can also [join the Apollo Discord](https://discord.gg/graphos).
 
