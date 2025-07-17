@@ -65,6 +65,84 @@ src/
    
    Navigate to [http://localhost:4000](http://localhost:4000) to explore your GraphQL API using Apollo Studio's built-in playground.
 
+## 🎮 Running Queries
+
+Once your server is running, you can test your GraphQL API using Apollo Studio Sandbox at `http://localhost:4000`. Here are the available queries:
+
+### **Query: Get Featured Listings**
+
+Get a curated list of intergalactic locations for the homepage:
+
+```graphql
+query GetFeaturedListings {
+  featuredListings {
+    id
+    title
+    description
+    numOfBeds
+    costPerNight
+    closedForBookings
+  }
+}
+```
+
+### **Query: Get Single Listing**
+
+Get details about a specific listing by ID:
+
+```graphql
+query GetListing {
+  listing(id: "listing-1") {
+    id
+    title
+    description
+    numOfBeds
+    costPerNight
+    closedForBookings
+  }
+}
+```
+
+### **Example Queries with Variables**
+
+You can also use variables in your queries:
+
+```graphql
+query GetListingById($listingId: ID!) {
+  listing(id: $listingId) {
+    id
+    title
+    description
+    costPerNight
+  }
+}
+```
+
+**Query Variables:**
+```json
+{
+  "listingId": "listing-1"
+}
+```
+
+### **Using Apollo Studio Sandbox**
+
+1. **Open the playground**: Visit `http://localhost:4000`
+2. **Write your query**: Use the left panel to write GraphQL queries
+3. **Explore the schema**: Use the Schema tab to browse available fields
+4. **Auto-complete**: Press `Ctrl+Space` for intelligent suggestions
+5. **Run queries**: Click the play button or press `Ctrl+Enter`
+
+### **Available Fields**
+
+Each `Listing` includes:
+- `id` - Unique identifier
+- `title` - Name of the location
+- `description` - Detailed description
+- `numOfBeds` - Number of available beds
+- `costPerNight` - Price per night
+- `closedForBookings` - Whether bookings are available
+
 ## 📝 Available Scripts
 
 | Script | Description |
@@ -84,13 +162,14 @@ src/
 type Listing {
   id: ID!
   title: String!
+  description: String!
   numOfBeds: Int
   costPerNight: Float
   closedForBookings: Boolean
 }
 ```
 
-### Queries
+### Available Queries
 
 **featuredListings** - Get curated homepage listings
 ```graphql
@@ -98,6 +177,21 @@ query GetFeaturedListings {
   featuredListings {
     id
     title
+    description
+    costPerNight
+    closedForBookings
+  }
+}
+```
+
+**listing** - Get a specific listing by ID
+```graphql
+query GetListing($id: ID!) {
+  listing(id: $id) {
+    id
+    title
+    description
+    numOfBeds
     costPerNight
     closedForBookings
   }
