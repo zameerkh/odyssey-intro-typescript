@@ -207,12 +207,85 @@ query GetListing($id: ID!) {
 }
 ```
 
+## � Understanding Resolver Chains
+
+Resolver chains are a powerful GraphQL concept that allows you to compose data from multiple sources efficiently. In this project, we demonstrate resolver chains with the `Listing` type and its `amenities` field.
+
+### How Resolver Chains Work
+
+1. **Parent Resolver**: The `listing` query fetches a `Listing` object from the REST API
+2. **Field Resolver**: The `amenities` field resolver processes amenities for that specific listing
+3. **Smart Data Fetching**: The resolver can choose to return existing data or fetch additional data
+
+### Example: Amenities Resolver Chain
+
+```typescript
+Listing: {
+  amenities: (parent, _, { dataSources }) => {
+    return validateFullAmenities(parent.amenities)
+      ? parent.amenities
+      : dataSources.listingAPI.getAmenities(parent.id);
+  },
+}
+```
+
+### Benefits of Resolver Chains
+
+- **Performance Optimization**: Only fetch additional data when needed
+- **Data Composition**: Combine data from multiple sources seamlessly
+- **Flexibility**: Different queries can request different levels of detail
+- **Separation of Concerns**: Each resolver handles one specific piece of data
+
+### Testing Resolver Chains
+
+Try these queries to see resolver chains in action:
+
+**Basic Listing (no amenities fetched):**
+
+```graphql
+query GetListing {
+  listing(id: "listing-1") {
+    id
+    title
+    description
+  }
+}
+```
+
+**Listing with Amenities (triggers amenities resolver):**
+
+```graphql
+query GetListingWithAmenities {
+  listing(id: "listing-1") {
+    id
+    title
+    amenities {
+      id
+      name
+      category
+    }
+  }
+}
+```
+
+The `amenities` field resolver only executes when the `amenities` field is explicitly requested in the query.
+
 ## 🔧 Development Workflow
 
 1. **Modify Schema**: Update `src/schema.graphql`
 2. **Generate Types**: Run `npm run generate`
-3. **Implement Resolvers**: Add resolver logic in `src/index.ts`
+3. **Implement Resolvers**: Add resolver logic in `src/datasources/resolver.ts`
 4. **Test**: Use Apollo Studio Sandbox at `http://localhost:4000`
+
+### Resolver Chain Development
+
+When working with resolver chains:
+
+1. **Define the Parent Type**: Add fields to your GraphQL schema
+2. **Implement Parent Resolver**: Create the main query/mutation resolver
+3. **Add Field Resolvers**: Implement resolvers for complex fields
+4. **Optimize Data Fetching**: Use validation functions to avoid unnecessary API calls
+5. **Test Different Query Patterns**: Verify both shallow and deep queries work correctly
 
 ## 📚 Learning Objectives
 
