@@ -41,28 +41,32 @@ src/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/apollographql-education/intro-typescript.git
    cd intro-typescript
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Generate TypeScript types**
+
    ```bash
    npm run generate
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
 
 5. **Open Apollo Studio Sandbox**
-   
+
    Navigate to [http://localhost:4000](http://localhost:4000) to explore your GraphQL API using Apollo Studio's built-in playground.
 
 ## 🎮 Running Queries
@@ -119,6 +123,7 @@ query GetListingById($listingId: ID!) {
 ```
 
 **Query Variables:**
+
 ```json
 {
   "listingId": "listing-1"
@@ -136,6 +141,7 @@ query GetListingById($listingId: ID!) {
 ### **Available Fields**
 
 Each `Listing` includes:
+
 - `id` - Unique identifier
 - `title` - Name of the location
 - `description` - Detailed description
@@ -145,19 +151,20 @@ Each `Listing` includes:
 
 ## 📝 Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server with hot reload |
+| Script             | Description                                   |
+| ------------------ | --------------------------------------------- |
+| `npm run dev`      | Start development server with hot reload      |
 | `npm run generate` | Generate TypeScript types from GraphQL schema |
-| `npm run compile` | Compile TypeScript to JavaScript |
-| `npm start` | Build and start production server |
-| `npm test` | Run test suite |
+| `npm run compile`  | Compile TypeScript to JavaScript              |
+| `npm start`        | Build and start production server             |
+| `npm test`         | Run test suite                                |
 
 ## 🌌 Schema Overview
 
 ### Types
 
 **Listing** - A bookable intergalactic location
+
 ```graphql
 type Listing {
   id: ID!
@@ -172,6 +179,7 @@ type Listing {
 ### Available Queries
 
 **featuredListings** - Get curated homepage listings
+
 ```graphql
 query GetFeaturedListings {
   featuredListings {
@@ -185,6 +193,7 @@ query GetFeaturedListings {
 ```
 
 **listing** - Get a specific listing by ID
+
 ```graphql
 query GetListing($id: ID!) {
   listing(id: $id) {
@@ -268,9 +277,8 @@ This is a tutorial project. For contributions, please refer to the [original rep
 
 For any issues or problems concerning the course content, please refer to the [Odyssey topic in our community forums](https://community.apollographql.com/tags/c/help/6/odyssey). You can also [join the Apollo Discord](https://discord.gg/graphos).
 
-
 ## Reference documentation
 
 For further reference, please consider the following sections:
 
-* [Official TypeScript documentation](https://www.typescriptlang.org/docs/)
+- [Official TypeScript documentation](https://www.typescriptlang.org/docs/)
